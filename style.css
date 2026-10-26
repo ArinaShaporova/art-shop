@@ -1,0 +1,346 @@
+/* ===== Базовые настройки ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --paper: #f7f1e8;
+    --paper-dark: #efe6d8;
+    --ink: #2b2118;
+    --ink-soft: #4a3f35;
+    --accent: #c0602c;
+    --accent-dark: #9a4a20;
+    --gold: #d4a24c;
+    --sage: #8a9a7b;
+    --card: #fffdf9;
+    --shadow: 0 4px 20px rgba(43, 33, 24, 0.08);
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(212, 162, 76, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(138, 154, 123, 0.06) 0%, transparent 40%);
+    background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Georgia', serif;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+}
+
+a { color: var(--accent); text-decoration: none; transition: color 0.3s; }
+a:hover { color: var(--accent-dark); }
+
+/* ===== Шапка ===== */
+header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1.2rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+    border-bottom: 3px solid var(--gold);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1150px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--gold);
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+}
+
+nav ul a {
+    color: var(--paper);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+nav ul a:hover, nav ul a.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+}
+
+/* ===== Герой ===== */
+.hero {
+    position: relative;
+    padding: 5rem 2rem;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(247, 241, 232, 0.9) 0%, rgba(239, 230, 216, 0.85) 100%);
+    border-bottom: 1px solid var(--paper-dark);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 140%;
+    height: 200%;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(192, 96, 44, 0.10) 0%, transparent 35%),
+        radial-gradient(circle at 70% 60%, rgba(212, 162, 76, 0.12) 0%, transparent 35%),
+        radial-gradient(circle at 50% 20%, rgba(138, 154, 123, 0.08) 0%, transparent 30%);
+    pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 750px; margin: 0 auto; }
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--ink);
+    font-style: italic;
+    line-height: 1.2;
+}
+
+.hero .subtitle {
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.9rem 2.4rem;
+    border-radius: 40px;
+    text-decoration: none;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 14px rgba(192, 96, 44, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(192, 96, 44, 0.4);
+    color: #fff;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    box-shadow: none;
+    margin-left: 0.8rem;
+}
+
+.btn-outline:hover { background: var(--accent); color: #fff; }
+
+/* ===== Контейнер ===== */
+.container { max-width: 1150px; margin: 0 auto; padding: 3rem 2rem; }
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--ink);
+    font-style: italic;
+    position: relative;
+    padding-bottom: 0.8rem;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--gold), transparent);
+    border-radius: 2px;
+}
+
+/* ===== Карточки товаров ===== */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.product-card {
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.35s, box-shadow 0.35s;
+    border: 1px solid rgba(212, 162, 76, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(43, 33, 24, 0.15);
+}
+
+.product-img {
+    height: 180px;
+    background: linear-gradient(135deg, var(--paper-dark) 0%, var(--paper) 100%);
+    position: relative;
+    border-bottom: 1px solid rgba(212, 162, 76, 0.2);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+}
+
+.product-card:hover .product-img img {
+    transform: scale(1.05);
+}
+
+.product-info { padding: 1.3rem; flex-grow: 1; display: flex; flex-direction: column; }
+.product-info h3 { font-size: 1.15rem; margin-bottom: 0.4rem; color: var(--ink); }
+.product-info p { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 0.8rem; flex-grow: 1; font-family: 'Segoe UI', Arial, sans-serif; }
+.product-info .price { color: var(--accent); font-weight: bold; font-size: 1.3rem; font-family: 'Georgia', serif; margin-bottom: 0.8rem; display: block; }
+
+.btn-small {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 0.5rem 1.2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    transition: background 0.3s;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-small:hover { background: var(--accent); color: #fff; }
+
+/* ===== Текстовые блоки ===== */
+.about-section, .info-block {
+    background: var(--card);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2.5rem;
+    border-left: 5px solid var(--accent);
+}
+
+.about-section p, .info-block p { margin-bottom: 1rem; font-family: 'Segoe UI', Arial, sans-serif; color: var(--ink-soft); }
+.about-section h3, .info-block h3 { margin: 1.5rem 0 0.8rem; color: var(--ink); font-size: 1.4rem; }
+
+.info-block ul { margin-left: 1.5rem; margin-bottom: 1rem; font-family: 'Segoe UI', Arial, sans-serif; color: var(--ink-soft); }
+.info-block li { margin-bottom: 0.5rem; }
+
+/* ===== Контакты ===== */
+.contacts-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    border-top: 4px solid var(--gold);
+}
+
+.contacts-box h2 { color: var(--gold); margin-bottom: 1.5rem; font-style: italic; }
+.contacts-box p { margin-bottom: 0.8rem; font-family: 'Segoe UI', Arial, sans-serif; }
+.contacts-box a { color: var(--gold); }
+
+/* ===== Форма ===== */
+.form-group { margin-bottom: 1.2rem; }
+.form-group label { display: block; margin-bottom: 0.4rem; font-family: 'Segoe UI', Arial, sans-serif; font-size: 0.95rem; color: var(--ink-soft); }
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1px solid rgba(43, 33, 24, 0.2);
+    border-radius: 8px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 1rem;
+    background: var(--card);
+    color: var(--ink);
+}
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(192, 96, 44, 0.15);
+}
+
+/* ===== Хлебные крошки ===== */
+.breadcrumbs {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+}
+.breadcrumbs a { color: var(--accent); }
+
+/* ===== Подвал ===== */
+footer {
+    background: var(--ink);
+    color: #b8aa9a;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin-top: 3rem;
+    border-top: 3px solid var(--gold);
+}
+
+footer .counter-placeholder {
+    display: inline-block;
+    background: rgba(255,255,255,0.08);
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: #8a7f73;
+    border: 1px dashed rgba(255,255,255,0.15);
+}
+
+/* ===== Адаптив ===== */
+@media (max-width: 700px) {
+    .hero h1 { font-size: 2rem; }
+    nav ul { gap: 1rem; font-size: 0.9rem; }
+    .container { padding: 2rem 1rem; }
+    .about-section, .info-block { padding: 1.5rem; }
+}
